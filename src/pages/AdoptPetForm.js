@@ -15,16 +15,20 @@ export default function AdoptPetForm() {
     e.preventDefault();
     setStatus("sending");
     try {
-      const data = new FormData();
-      data.append("form-name", "adopt");
-      data.append("bot-field", "");
-      Object.entries(form).forEach(([key, val]) =>
+        const data = new FormData();
+        data.append("form-name", "adopt");
+        data.append("bot-field", "");
+        Object.entries(form).forEach(([key, val]) =>
         data.append(key, val ?? "")
-      );
-
-      const encodedData = new URLSearchParams(data).toString();
-      
-      await fetch("/", { method: "POST", body: data, headers: {"Content-Type": "application/x-www-form-urlencoded"} });
+        );
+        
+        await fetch("/", { 
+        method: "POST", 
+        body: new URLSearchParams(data).toString(),
+        headers: { 
+            "Content-Type": "application/x-www-form-urlencoded" 
+        }
+        });
       setStatus("sent");
       setForm({ petId: "", name: "", email: "", reason: "" });
     } catch {

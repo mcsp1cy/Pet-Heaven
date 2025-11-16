@@ -12,17 +12,26 @@ export default function ReleasePetForm() {
     e.preventDefault();
     setStatus("sending");
     try {
-      const data = new FormData();
-      data.append("form-name", "release");
-      data.append("bot-field", "");
-      Object.entries(form).forEach(([key, val]) => data.append(key, val ?? ""));
-      await fetch("/", { method: "POST", body: data });
-      setStatus("sent");
-      setForm({ ownerName: "", email: "", petName: "", species: "", details: "" });
+        const data = new FormData();
+        data.append("form-name", "release");
+        data.append("bot-field", "");
+        Object.entries(form).forEach(([key, val]) => data.append(key, val ?? ""));
+        
+        // FIX: Convert to URL-encoded format and add proper headers
+        await fetch("/", { 
+        method: "POST", 
+        body: new URLSearchParams(data).toString(),
+        headers: { 
+            "Content-Type": "application/x-www-form-urlencoded" 
+        }
+        });
+        
+        setStatus("sent");
+        setForm({ ownerName: "", email: "", petName: "", species: "", details: "" });
     } catch {
-      setStatus("error");
+        setStatus("error");
     }
-  };
+    };
 
   return (
     <main className="container register-page">

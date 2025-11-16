@@ -25,29 +25,31 @@ export default function Register() {
     e.preventDefault();
     setStatus("sending");
     try {
-      const data = new FormData();
-      data.append("form-name", "register");
-      data.append("bot-field", ""); // honeypot
+        const data = new FormData();
+        data.append("form-name", "register");
+        data.append("bot-field", "");
 
-      Object.entries(form).forEach(([key, val]) =>
+        Object.entries(form).forEach(([key, val]) =>
         data.append(key, typeof val === "boolean" ? String(val) : val ?? "")
-      );
+        );
 
-      await fetch("/", { method: "POST", body: data });
-      setStatus("sent");
-      setForm({
-        name: "",
-        email: "",
-        phone: "",
-        address: "",
-        city: "",
-        interests: "",
-        volunteer: false,
-      });
+        // FIX: Convert to URL-encoded format and add proper headers
+        await fetch("/", { 
+        method: "POST", 
+        body: new URLSearchParams(data).toString(),
+        headers: { 
+            "Content-Type": "application/x-www-form-urlencoded" 
+        }
+        });
+        
+        setStatus("sent");
+        setForm({
+        name: "", email: "", phone: "", address: "", city: "", interests: "", volunteer: false,
+        });
     } catch (err) {
-      setStatus("error");
+        setStatus("error");
     }
-  };
+    };
 
   return (
     <main className="container register-page">
