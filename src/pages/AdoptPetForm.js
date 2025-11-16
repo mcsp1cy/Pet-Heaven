@@ -21,6 +21,9 @@ export default function AdoptPetForm() {
       Object.entries(form).forEach(([key, val]) =>
         data.append(key, val ?? "")
       );
+
+      const encodedData = new URLSearchParams(data).toString();
+      
       await fetch("/", { method: "POST", body: data, headers: {"Content-Type": "application/x-www-form-urlencoded"} });
       setStatus("sent");
       setForm({ petId: "", name: "", email: "", reason: "" });
