@@ -4,18 +4,13 @@
 
 [build.environment]
   NODE_VERSION = "18"
-
-# Required for Netlify Forms to work with React
-[build.environment]
   NETLIFY_FORMS = "true"
 
-# redirects for React Router
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-# security headers
 [[headers]]
   for = "/*"
   [headers.values]
