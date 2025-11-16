@@ -18,7 +18,7 @@ export default function ReleasePetForm() {
         Object.entries(form).forEach(([key, val]) => data.append(key, val ?? ""));
         
         // FIX: Convert to URL-encoded format and add proper headers
-        await fetch("/", { 
+        await fetch("/releasepetform", { 
         method: "POST", 
         body: new URLSearchParams(data).toString(),
         headers: { 

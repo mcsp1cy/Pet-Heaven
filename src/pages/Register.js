@@ -34,7 +34,7 @@ export default function Register() {
         );
 
         // FIX: Convert to URL-encoded format and add proper headers
-        await fetch("/", { 
+        await fetch("/register", { 
         method: "POST", 
         body: new URLSearchParams(data).toString(),
         headers: { 

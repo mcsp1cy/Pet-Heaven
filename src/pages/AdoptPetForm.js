@@ -22,7 +22,7 @@ export default function AdoptPetForm() {
         data.append(key, val ?? "")
         );
         
-        await fetch("/", { 
+        await fetch("/adoptpetform", { 
         method: "POST", 
         body: new URLSearchParams(data).toString(),
         headers: { 
