@@ -4,8 +4,6 @@
 
 [build.environment]
   NODE_VERSION = "18"
-
-[build.environment]
   NETLIFY_FORMS = "true"
 
 [[redirects]]
