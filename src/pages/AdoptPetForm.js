@@ -49,8 +49,6 @@ export default function AdoptPetForm() {
 
       <form
         name="adopt"
-        method="POST"
-        data-netlify="true"
         netlify-honeypot="bot-field"
         onSubmit={submit}
         className="form-panel"

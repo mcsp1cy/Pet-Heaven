@@ -45,8 +45,6 @@ export default function ReleasePetForm() {
 
       <form
         name="release"
-        method="POST"
-        data-netlify="true"
         netlify-honeypot="bot-field"
         onSubmit={submit}
         className="form-panel"

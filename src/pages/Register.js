@@ -67,8 +67,6 @@ export default function Register() {
 
       <form
         name="register"
-        method="POST"
-        data-netlify="true"
         netlify-honeypot="bot-field"
         onSubmit={onSubmit}
         className="form-panel"
